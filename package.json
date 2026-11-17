@@ -5,11 +5,13 @@
   "description": "Coy Discover Feature - Complete Implementation",
   "type": "module",
   "scripts": {
+    "setup": "npm --prefix Backend install && npm --prefix Frontend install",
+    "install:all": "npm --prefix Backend install && npm --prefix Frontend install",
     "start:backend": "node Backend/src/server.js",
     "start:frontend": "npm --prefix Frontend run dev",
-    "test:backend": "npm --prefix Backend test",
-    "test:frontend": "npm --prefix Frontend test",
-    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "node Backend/test/test-api.js",
+    "test:frontend": "node Frontend/test/test-frontend.js",
+    "test": "node Backend/test/test-api.js && node Frontend/test/test-frontend.js",
     "build:frontend": "npm --prefix Frontend run build"
   }
 }

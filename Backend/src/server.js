@@ -1,10 +1,16 @@
 import express from 'express';
 import cors from 'cors';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { config } from './config.js';
 import { DataAccessLayer } from './dal/dataAccess.js';
 import { createFeedRouter } from './routes/feed.js';
 import { createSwipeRouter } from './routes/swipe.js';
 import { createMatchesRouter } from './routes/matches.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export async function createApp(customConfig = {}) {
   const appConfig = { ...config, ...customConfig };
@@ -59,7 +65,33 @@ export async function createApp(customConfig = {}) {
   app.use(['/swipe', '/api/swipe'], swipeRouter);
   app.use(['/matches', '/api/matches'], matchesRouter);
 
-  // 404 Route Handler
+  // Serve production built frontend if available
+  const distCandidates = [
+    path.resolve(__dirname, '../../Frontend/dist'),
+    path.resolve(process.cwd(), 'Frontend/dist'),
+    path.resolve(__dirname, '../public')
+  ];
+  const distDir = distCandidates.find((dir) => fs.existsSync(dir));
+
+  if (distDir) {
+    app.use(express.static(distDir));
+    app.get('*', (req, res, next) => {
+      if (
+        req.path.startsWith('/api') ||
+        req.path === '/feed' ||
+        req.path === '/swipe' ||
+        req.path === '/matches' ||
+        req.path === '/health' ||
+        req.path === '/stats' ||
+        req.path === '/dev/reset'
+      ) {
+        return next();
+      }
+      res.sendFile(path.join(distDir, 'index.html'));
+    });
+  }
+
+  // 404 Route Handler for unmatched API routes
   app.use((req, res) => {
     res.status(404).json({
       success: false,

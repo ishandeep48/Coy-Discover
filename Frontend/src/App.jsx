@@ -1,17 +1,69 @@
 import React, { useState } from 'react';
-import './index.css'
+import './index.css';
+import Home from './components/Home';
+import Discover from './components/Discover';
 
-const CoyWordmark = () => (
-  <div style={{
-    display: 'inline-flex',
-    alignItems: 'baseline',
-    fontFamily: '"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
-    fontWeight: 800,
-    fontSize: '1.75rem',
-    letterSpacing: '-0.04em',
-    color: '#15121d',
-    textDecoration: 'none'
-  }}>
+const HomeIcon = ({ width = 16, height = 16, color = 'currentColor' }) => (
+  <svg 
+    width={width} 
+    height={height} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke={color} 
+    strokeWidth="2.2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    aria-hidden="true"
+  >
+    <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+    <polyline points="9 22 9 12 15 12 15 22" />
+  </svg>
+);
+
+const DiscoverIcon = ({ width = 16, height = 16, color = 'currentColor', filled = false }) => (
+  <svg 
+    width={width} 
+    height={height} 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke={color} 
+    strokeWidth="2.2" 
+    strokeLinecap="round" 
+    strokeLinejoin="round" 
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <polygon 
+      points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" 
+      fill={filled ? color : 'none'} 
+    />
+  </svg>
+);
+
+const CoyWordmark = ({ onClick }) => (
+  <div 
+    onClick={onClick}
+    role={onClick ? 'button' : undefined}
+    tabIndex={onClick ? 0 : undefined}
+    onKeyDown={(e) => {
+      if (onClick && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        onClick();
+      }
+    }}
+    style={{
+      display: 'inline-flex',
+      alignItems: 'baseline',
+      fontFamily: '"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
+      fontWeight: 800,
+      fontSize: '1.75rem',
+      letterSpacing: '-0.04em',
+      color: '#15121d',
+      textDecoration: 'none',
+      cursor: onClick ? 'pointer' : 'default',
+      userSelect: 'none'
+    }}
+  >
     coy<span style={{
       display: 'inline-block',
       width: '0.32em',
@@ -26,11 +78,13 @@ const CoyWordmark = () => (
 const SettingsIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <circle cx="12" cy="12" r="3"></circle>
-    <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path>
+    <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1 2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path>
   </svg>
 );
 
 function App() {
+  // Discover is the initial/default tab
+  const [activeTab, setActiveTab] = useState('discover');
   const [toast, setToast] = useState({ show: false, message: '' });
   
   const showToast = (message) => {
@@ -71,7 +125,7 @@ function App() {
         <div style={{
           position: 'fixed',
           left: '50%',
-          bottom: '20px',
+          bottom: 'calc(20px + env(safe-area-inset-bottom, 0px))',
           transform: 'translateX(-50%)',
           background: '#15121d',
           color: '#fff',
@@ -82,7 +136,8 @@ function App() {
           zIndex: 40,
           borderRadius: '16px',
           padding: '13px 18px',
-          display: 'flex'
+          display: 'flex',
+          boxShadow: '0 4px 16px rgba(0,0,0,0.15)'
         }}>
           {toast.message}
         </div>
@@ -91,400 +146,115 @@ function App() {
       <main style={{
         maxWidth: '480px',
         minHeight: '100dvh',
-        padding: '0 20px calc(40px + env(safe-area-inset-bottom))',
-        paddingTop: 'env(safe-area-inset-top)',
-        margin: '0 auto'
+        padding: '0 20px calc(40px + env(safe-area-inset-bottom, 0px))',
+        paddingTop: 'env(safe-area-inset-top, 0px)',
+        margin: '0 auto',
+        boxSizing: 'border-box'
       }}>
-        {/* Header */}
+        {/* Navigation Bar / Header */}
         <header style={{
           justifyContent: 'space-between',
           alignItems: 'center',
           minHeight: '64px',
           padding: '16px 0 8px',
-          display: 'flex'
+          display: 'flex',
+          gap: '8px'
         }}>
-          <CoyWordmark />
-          <button 
-            aria-label="Settings"
-            style={{
-              background: '#f6f4fa',
-              width: '44px',
-              height: '44px',
-              border: 'none',
-              borderRadius: '50%',
-              display: 'grid',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }}
-          >
-            <SettingsIcon />
-          </button>
-        </header>
+          {/* Logo on the Left */}
+          <CoyWordmark onClick={() => setActiveTab('home')} />
+          
+          {/* Right Area: Side-by-side Home & Discover Buttons + Settings */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              {/* Home Button */}
+              <button 
+                type="button"
+                onClick={() => setActiveTab('home')}
+                aria-label="Home page"
+                aria-current={activeTab === 'home' ? 'page' : undefined}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  background: activeTab === 'home' ? '#e53935' : '#f6f4fa',
+                  color: activeTab === 'home' ? '#ffffff' : '#15121d',
+                  border: activeTab === 'home' ? '1.5px solid #b71c1c' : '1.5px solid #ece9f2',
+                  borderRadius: '999px',
+                  padding: '7px 13px',
+                  fontWeight: 700,
+                  fontSize: '0.8125rem',
+                  cursor: 'pointer',
+                  fontFamily: '"Bricolage Grotesque", system-ui, -apple-system, sans-serif',
+                  boxShadow: activeTab === 'home' ? '0 2px 6px rgba(229, 57, 53, 0.3)' : 'none',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <HomeIcon width={15} height={15} color={activeTab === 'home' ? '#ffffff' : '#15121d'} />
+                <span>Home</span>
+              </button>
 
-        {/* Status Section */}
-        <div style={{
-          background: '#e7e0ff',
-          border: '2px solid #15121d',
-          boxShadow: '4px 4px 0 #15121d',
-          borderRadius: '26px',
-          marginTop: '8px',
-          padding: '22px 20px'
-        }}>
-          <div style={{ fontSize: '2.25rem', lineHeight: '1' }} aria-hidden="true">🤫</div>
-          <h1 style={{
-            marginTop: '12px',
-            fontSize: '1.875rem',
-            lineHeight: '1.08',
-            color: '#15121d',
-            margin: 0
-          }}>No one has added you yet</h1>
-          <p style={{
-            marginTop: '8px',
-            fontSize: '1.1875rem',
-            color: '#15121d',
-            opacity: 0.75
-          }}>Invite friends so your crush can join too.</p>
-          <div style={{
-            marginTop: '18px',
-            flexWrap: 'wrap',
-            alignItems: 'center',
-            gap: '14px'
-          }}>
-            <a 
-              href="https://wa.me/?text=Someone%20in%20this%20group%20might%20have%20a%20crush%20on%20you%20%E2%9C%90%20On%20Coy%20you%20add%20your%20crushes%20secretly.%20If%20it%27s%20mutual%2C%20you%20both%20find%20out.%20Nobody%20else%20ever%20does.%20https%3A%2F%2Fapp.getcoy.com%2Fi%2Fcy4srjq" 
-              target="_blank" 
-              rel="noopener"
+              {/* Discover Button */}
+              <button 
+                type="button"
+                onClick={() => setActiveTab('discover')}
+                aria-label="Discover page"
+                aria-current={activeTab === 'discover' ? 'page' : undefined}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  background: activeTab === 'discover' ? '#e53935' : '#f6f4fa',
+                  color: activeTab === 'discover' ? '#ffffff' : '#15121d',
+                  border: activeTab === 'discover' ? '1.5px solid #b71c1c' : '1.5px solid #ece9f2',
+                  borderRadius: '999px',
+                  padding: '7px 13px',
+                  fontWeight: 700,
+                  fontSize: '0.8125rem',
+                  cursor: 'pointer',
+                  fontFamily: '"Bricolage Grotesque", system-ui, -apple-system, sans-serif',
+                  boxShadow: activeTab === 'discover' ? '0 2px 6px rgba(229, 57, 53, 0.3)' : 'none',
+                  transition: 'all 0.15s ease'
+                }}
+              >
+                <DiscoverIcon 
+                  width={15} 
+                  height={15} 
+                  color={activeTab === 'discover' ? '#ffffff' : '#15121d'} 
+                  filled={activeTab === 'discover'} 
+                />
+                <span>Discover</span>
+              </button>
+            </div>
+
+            {/* Settings Button */}
+            <button 
+              type="button"
+              aria-label="Settings"
+              onClick={() => showToast('Settings is disabled. This is a demo version.')}
               style={{
-                border: '2px solid #15121d',
-                minHeight: '42px',
-                background: '#fff',
-                color: '#15121d',
-                fontWeight: 700,
-                fontSize: '0.875rem',
-                cursor: 'pointer',
-                borderRadius: '999px',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '0 16px',
-                textDecoration: 'none',
-                boxShadow: '3px 3px 0 #15121d'
-              }}
-            >
-              Invite friends
-            </a>
-          </div>
-        </div>
-
-        {/* Nudge Section */}
-        <button 
-          type="button" 
-          onClick={() => showToast('Email feature coming soon!')}
-          style={{
-            border: '2px solid #ece9f2',
-            background: '#fff',
-            textAlign: 'left',
-            cursor: 'pointer',
-            width: '100%',
-            color: '#15121d',
-            borderRadius: '18px',
-            alignItems: 'center',
-            gap: '12px',
-            marginTop: '14px',
-            padding: '12px 14px',
-            display: 'flex'
-          }}
-        >
-          <span aria-hidden="true" style={{
-            background: '#d7ecff',
-            borderRadius: '12px',
-            flex: 'none',
-            placeItems: 'center',
-            width: '42px',
-            height: '42px',
-            fontSize: '1.2rem'
-          }}>📧</span>
-          <div style={{ minWidth: 0, flex: 1 }}>
-            <strong>Add your email</strong>
-            <span style={{ display: 'block' }}>So people who only have your email can find you.</span>
-          </div>
-          <span style={{ color: '#d81e63', fontWeight: 750 }}>Add</span>
-        </button>
-
-        {/* Your Crushes Section */}
-        <section style={{ padding: '28px 0 0' }}>
-          <div style={{
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: '12px',
-            display: 'flex'
-          }}>
-            <h2 style={{ margin: 0, fontSize: '1.1875rem' }}>Your crushes</h2>
-            <span style={{
-              fontWeight: 700,
-              fontSize: '0.875rem',
-              background: '#f6f4fa',
-              color: '#6d6979',
-              borderRadius: '999px',
-              padding: '7px 11px'
-            }}>1/3</span>
-          </div>
-
-          <ul style={{ gap: '10px', margin: 0, padding: 0, display: 'grid' }}>
-            <li style={{
-              background: '#f6f4fa',
-              borderRadius: '18px',
-              alignItems: 'center',
-              gap: '14px',
-              padding: '12px 12px 12px 14px',
-              display: 'flex'
-            }}>
-              <span style={{
-                width: '46px',
-                height: '46px',
-                fontFamily: '"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif',
-                fontWeight: 750,
-                fontSize: '1.125rem',
-                lineHeight: 1,
-                color: '#15121d',
-                background: '#e7e0ff',
+                background: '#f6f4fa',
+                width: '40px',
+                height: '40px',
+                border: 'none',
                 borderRadius: '50%',
                 display: 'grid',
                 alignItems: 'center',
-                justifyContent: 'center'
-              }}>M</span>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <strong style={{ fontSize: '1rem' }}>Me Me Me</strong>
-                <span style={{ 
-                  fontSize: '0.875rem', 
-                  color: '#6d6979',
-                  display: 'block' 
-                }}>
-                  +91 84342 11577
-                  <span style={{ display: 'block' }}>ishandeep47@gmail.com</span>
-                </span>
-              </div>
-            </li>
-            <li>
-              <button 
-                onClick={() => showToast('Add crush feature coming soon!')}
-                style={{
-                  background: '#fff',
-                  width: '100%',
-                  color: '#15121d',
-                  textAlign: 'left',
-                  border: '2px dashed #cfcadb',
-                  borderRadius: '18px',
-                  alignItems: 'center',
-                  gap: '14px',
-                  padding: '12px 14px',
-                  textDecoration: 'none',
-                  display: 'flex'
-                }}
-              >
-                <span style={{
-                  background: '#ff3d81',
-                  border: '2px solid #15121d',
-                  borderRadius: '50%',
-                  placeItems: 'center',
-                  width: '46px',
-                  height: '46px',
-                  fontSize: '1.5rem',
-                  fontWeight: 600,
-                  display: 'grid'
-                }}>+</span>
-                <span>Add a crush</span>
-              </button>
-            </li>
-          </ul>
-
-          <div style={{
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            gap: '16px',
-            marginTop: '14px',
-            display: 'flex'
-          }}>
-            <p style={{
-              fontSize: '0.875rem',
-              color: '#6d6979'
-            }}>They get an anonymous heads-up right away. Never who.</p>
-            <a 
-              href="#" 
-              onClick={(e) => { e.preventDefault(); showToast('Upgrade feature coming soon!'); }}
-              style={{
-                color: '#d81e63',
-                fontWeight: 700,
-                fontSize: '0.875rem',
-                textDecoration: 'underline',
-                margin: '-8px -4px',
-                padding: '8px 4px'
+                justifyContent: 'center',
+                cursor: 'pointer',
+                flexShrink: 0
               }}
-            >More slots</a>
+            >
+              <SettingsIcon />
+            </button>
           </div>
-        </section>
+        </header>
 
-        {/* Refer Section */}
-        <section style={{
-          border: '2px solid #15121d',
-          background: '#cbf4e0',
-          boxShadow: '3px 3px 0 #15121d',
-          borderRadius: '22px',
-          marginTop: '26px',
-          padding: '18px'
-        }}>
-          <div style={{ alignItems: 'flex-start', gap: '12px', display: 'flex' }}>
-            <span aria-hidden="true" style={{
-              background: '#fff',
-              borderRadius: '12px',
-              flex: 'none',
-              placeItems: 'center',
-              width: '42px',
-              height: '42px',
-              fontSize: '1.3rem'
-            }}>🎁</span>
-            <div style={{ minWidth: 0 }}>
-              <strong style={{ 
-                fontSize: '1.1875rem', 
-                lineHeight: '1.2', 
-                display: 'block' 
-              }}>Get a slot free</strong>
-              <span style={{ 
-                fontSize: '0.875rem', 
-                opacity: 0.8, 
-                marginTop: '2px', 
-                lineHeight: '1.4',
-                display: 'block'
-              }}>Invite 3 friends. When 3 join and add a crush, you get a slot.</span>
-            </div>
-          </div>
-
-          <div style={{
-            alignItems: 'center',
-            gap: '6px',
-            marginTop: '16px',
-            display: 'flex'
-          }}>
-            {[...Array(3)].map((_, i) => (
-              <span key={i} style={{
-                background: '#fff',
-                border: '2px solid #15121d',
-                borderRadius: '999px',
-                flex: 1,
-                height: '10px'
-              }}></span>
-            ))}
-            <span style={{
-              fontWeight: 750,
-              fontSize: '0.875rem'
-            }}>0/3</span>
-          </div>
-
-          <div style={{
-            border: '2px solid #15121d',
-            background: '#fff',
-            borderRadius: '18px',
-            marginTop: '16px',
-            padding: '16px'
-          }}>
-            <div style={{ borderBottom: '2px dashed #ece9f2', paddingBottom: '14px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px' }}>
-              <div>
-                <span style={{ 
-                  fontWeight: 700,
-                  fontSize: '0.75rem',
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  color: '#6d6979',
-                  display: 'block'
-                }}>Your referral code</span>
-                <strong style={{ 
-                  fontSize: '2rem',
-                  letterSpacing: '0.06em',
-                  color: '#d81e63',
-                  overflowWrap: 'anywhere',
-                  marginTop: '8px',
-                  display: 'block'
-                }}>{referralCode}</strong>
-              </div>
-              <button 
-                onClick={() => copyToClipboard(referralCode)}
-                style={{
-                  border: '2px solid #15121d',
-                  background: '#ffe4ef',
-                  width: '48px',
-                  height: '48px',
-                  color: '#15121d',
-                  cursor: 'pointer',
-                  borderRadius: '50%',
-                  display: 'grid',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                  <rect x="9" y="9" width="12" height="12" rx="2.5"></rect>
-                  <path d="M5 15H4.5A1.5 1.5 0 0 1 3 13.5v-9A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V5"></path>
-                </svg>
-              </button>
-            </div>
-
-            <div style={{ gridTemplateColumns: '1fr 1fr', gap: '10px', marginTop: '14px', display: 'grid' }}>
-              <button 
-                onClick={() => {
-                  const url = `https://app.getcoy.com/?ref=${referralCode}`;
-                  copyToClipboard(url);
-                }}
-                style={{
-                  background: '#fff',
-                  minHeight: '42px',
-                  color: '#15121d',
-                  fontWeight: 700,
-                  fontSize: '0.875rem',
-                  cursor: 'pointer',
-                  borderRadius: '999px',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '0 12px',
-                  textDecoration: 'none',
-                  display: 'inline-flex'
-                }}
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
-                  <path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4L12 5.6"></path>
-                  <path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"></path>
-                </svg>
-                <span>Copy link</span>
-              </button>
-              <a 
-                href={`https://wa.me/?text=Check%20out%20this%20app!%20My%20referral%20code%20is%20${encodeURIComponent(referralCode)}`} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{
-                  background: '#fff',
-                  minHeight: '42px',
-                  color: '#15121d',
-                  fontWeight: 700,
-                  fontSize: '0.875rem',
-                  cursor: 'pointer',
-                  borderRadius: '999px',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '0 12px',
-                  textDecoration: 'none',
-                  display: 'inline-flex'
-                }}
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
-                  <path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4L12 5.6"></path>
-                  <path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1.2-1.2"></path>
-                </svg>
-                <span>Share link</span>
-              </a>
-            </div>
-          </div>
-        </section>
+        {/* Content View: Discover (Default) or Home */}
+        {activeTab === 'discover' ? (
+          <Discover />
+        ) : (
+          <Home showToast={showToast} />
+        )}
       </main>
     </>
   );

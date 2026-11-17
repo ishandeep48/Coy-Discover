@@ -491,7 +491,7 @@ Retrieves all confirmed mutual matches for the logged-in user.
 ---
 
 ### 4. `POST /dev/reset` (or `POST /api/dev/reset`)
-Restores `data/runtime.json` to the original seed state. Disabled when `NODE_ENV=production`.
+Restores `data/runtime.json` to the original seed state at any time.
 
 - **Method:** `POST`
 - **URL:** `/dev/reset`

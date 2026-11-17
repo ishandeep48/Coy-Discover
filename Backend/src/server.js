@@ -43,11 +43,8 @@ export async function createApp(customConfig = {}) {
     }
   });
 
-  // Development-only reset endpoint
+  // Reset demo state endpoint (restores initial seed profiles)
   app.post(['/dev/reset', '/api/dev/reset'], async (req, res, next) => {
-    if (process.env.NODE_ENV === 'production') {
-      return res.status(403).json({ success: false, error: 'Reset endpoint disabled in production.' });
-    }
     try {
       await dal.resetToSeed();
       res.json({ success: true, message: 'Runtime state successfully reset to initial seed data.' });

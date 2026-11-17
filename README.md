@@ -64,22 +64,6 @@ The development server will open automatically in your default browser.
 
 ---
 
-## 🎨 Features Implemented (Demo Mode)
-
-| Feature | Status | Description |
-|---------|--------|-------------|
-| **Header** | ✅ Active | Logo with settings button |
-| **Status Indicator** | ✅ Active | "No one has added you yet" message |
-| **Invite Friends** | ⏸️ Disabled | Button present but not clickable (demo) |
-| **Add Crush Tile** | ⏸️ Disabled | Button present but not clickable (demo) |
-| **More Slots** | ⏸️ Disabled | Link present but not clickable (demo) |
-| **Crushes List** | ✅ Active | Empty list with 1/3 counter shown |
-| **Toast Notifications** | ✅ Active | Shows demo messages when clicking buttons |
-
-> ℹ️ All buttons are disabled in this demo version. Clicking them shows informative toast messages.
-
----
-
 ## 🎨 Design System
 
 ### Colors (Exact Match)
@@ -107,18 +91,6 @@ The development server will open automatically in your default browser.
 - **Font Stack:** `"Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif`
 - **Mobile-first responsive design**
 - **Exact spacing and margins from original app**
-
----
-
-## 📱 Features (Demo Version)
-
-- ✅ **Header Navigation** - Coy logo with settings button
-- ✅ **Status Indicator** - "No one has added you yet" message
-- ⏸️ **Invite Friends** - Disabled (demo mode)
-- ❌ **Email Nudge** - Removed from demo
-- ❌ **Add Crush Functionality** - Button disabled (no backend)
-- ❌ **More Slots Upgrade** - Removed from demo  
-- ❌ **Referral Section** - Removed from demo
 
 ---
 
@@ -168,23 +140,11 @@ npm run build
 
 This is a **1:1 recreation** of the offline saved Coy webpage from `Original/Coy.html`. The design, colors, and layout exactly match the original app.
 
-### Demo Version Features
+### Demo Mode Features
 
-This version is specifically configured as a **DEMO MODE** application:
-
-- ✅ All UI elements present and styled correctly
-- ❌ All interactive buttons are disabled
-- ✅ Toast notifications show informative messages
-- ⚠️ No backend database integration
-- ⚠️ No authentication system
-- ⚠️ No real-time matching functionality
-- ⚠️ Empty crushes list (no add functionality)
-
-### Removed Sections from Demo:
-
-1. **Email Nudge Section** - "Add your email" button removed
-2. **More Slots Link** - Upgrade CTA link removed
-3. **Referral Section** - "Get a slot free" section removed
+- ✅ All UI elements styled correctly
+- ⏸️ Interactive buttons disabled (demo mode)
+- ✅ Toast notifications show demo messages
 
 ---
 

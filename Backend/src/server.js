@@ -46,6 +46,7 @@ export async function createApp(customConfig = {}) {
   // Reset demo state endpoint (restores initial seed profiles)
   app.post(['/dev/reset', '/api/dev/reset'], async (req, res, next) => {
     try {
+      console.log('[DAL] Dev reset invoked - restoring runtime.json to seed state');
       await dal.resetToSeed();
       res.json({ success: true, message: 'Runtime state successfully reset to initial seed data.' });
     } catch (err) {

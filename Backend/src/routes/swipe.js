@@ -20,11 +20,12 @@ export function createSwipeRouter(dal) {
 
       const statusCode = 201;
 
-      if (result.isMatch) {
+      if (result.matched) {
         return res.status(statusCode).json({
           success: true,
-          message: "It's a mutual match!",
+          matched: true,
           isMatch: true,
+          message: "It's a mutual match!",
           match: result.match,
           matchedProfile: result.matchedProfile,
           swipe: result.swipe
@@ -33,8 +34,9 @@ export function createSwipeRouter(dal) {
 
       return res.status(statusCode).json({
         success: true,
-        message: `Recorded ${action} successfully.`,
+        matched: false,
         isMatch: false,
+        message: 'Swipe recorded successfully',
         swipe: result.swipe
       });
     } catch (err) {

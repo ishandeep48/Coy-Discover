@@ -35,8 +35,8 @@ function resolveDataPath() {
 
 export const config = {
   port: parseInt(process.env.PORT || '5000', 10),
-  // Consistent ID for the assumed logged-in user
-  currentUserId: process.env.CURRENT_USER_ID || 'user_me',
+  // Centralized consistent ID for the assumed single logged-in user
+  currentUserId: process.env.CURRENT_USER_ID || 'current_user',
   seedFilePath: resolveSeedPath(),
   runtimeFilePath: resolveDataPath()
 };

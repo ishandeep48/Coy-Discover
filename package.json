@@ -1,0 +1,15 @@
+{
+  "name": "coy-discover",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Coy Discover Feature - Complete Implementation",
+  "type": "module",
+  "scripts": {
+    "start:backend": "node Backend/src/server.js",
+    "start:frontend": "npm --prefix Frontend run dev",
+    "test:backend": "npm --prefix Backend test",
+    "test:frontend": "npm --prefix Frontend test",
+    "test": "npm run test:backend && npm run test:frontend",
+    "build:frontend": "npm --prefix Frontend run build"
+  }
+}

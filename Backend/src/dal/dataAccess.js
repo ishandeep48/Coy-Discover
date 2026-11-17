@@ -63,6 +63,17 @@ export class DataAccessLayer {
   }
 
   /**
+   * Development-only reset mechanism:
+   * Restores data/runtime.json to the original seed state.
+   */
+  async resetToSeed() {
+    console.log(`[DAL] Resetting runtime.json to seed state from: ${this.seedFilePath}`);
+    const initialData = await this._createInitialRuntime();
+    await this.storage.write(initialData);
+    return initialData;
+  }
+
+  /**
    * Reads seed/profiles.json (read-only) and returns initial runtime state.
    */
   async _createInitialRuntime() {
@@ -241,10 +252,24 @@ export class DataAccessLayer {
         }
       }
 
+      const matchFrontendPayload = isMatch && matchRecord ? {
+        id: matchRecord.id,
+        profile: {
+          id: targetProfile.id,
+          name: targetProfile.name,
+          photo: targetProfile.photo,
+          age: targetProfile.age,
+          bio: targetProfile.bio,
+          cityOrCollege: targetProfile.cityOrCollege,
+          interests: targetProfile.interests
+        }
+      } : null;
+
       const result = {
         swipe: newSwipe,
         isMatch,
-        match: matchRecord || null,
+        matched: isMatch,
+        match: matchFrontendPayload,
         matchedProfile: isMatch ? targetProfile : null
       };
 
@@ -280,7 +305,15 @@ export class DataAccessLayer {
         id: match.id,
         matchedUserId: otherUserId,
         createdAt: match.createdAt,
-        profile: otherProfile
+        profile: {
+          id: otherProfile.id,
+          name: otherProfile.name,
+          photo: otherProfile.photo,
+          age: otherProfile.age,
+          bio: otherProfile.bio,
+          cityOrCollege: otherProfile.cityOrCollege,
+          interests: otherProfile.interests || []
+        }
       };
     });
   }

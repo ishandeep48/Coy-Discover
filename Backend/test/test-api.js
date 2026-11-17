@@ -76,7 +76,7 @@ async function runTests() {
   const { app, dal } = await createApp({
     seedFilePath: seedFile,
     runtimeFilePath: testRuntimeFile,
-    currentUserId: 'user_me'
+    currentUserId: 'current_user'
   });
 
   const runtimeExists = await fs.stat(testRuntimeFile).then(() => true).catch(() => false);
@@ -135,7 +135,7 @@ async function runTests() {
   assert.equal(nonExistentTargetRes.status, 404, 'Should reject non-existent profile with 404.');
 
   const swipeSelfRes = await makeRequest(app, 'POST', '/swipe', {
-    targetProfileId: 'user_me',
+    targetProfileId: 'current_user',
     action: 'LIKE'
   });
   assert.equal(swipeSelfRes.status, 400, 'Should reject user swiping on themselves with 400.');
@@ -148,6 +148,7 @@ async function runTests() {
     action: 'PASS'
   });
   assert.equal(passRes.status, 201);
+  assert.equal(passRes.body.matched, false);
   assert.equal(passRes.body.isMatch, false);
   assert.equal(passRes.body.swipe.action, 'PASS');
   assert.equal(passRes.body.swipe.targetProfileId, 'profile_1');
@@ -171,26 +172,25 @@ async function runTests() {
 
   // 6. POST /swipe LIKE without mutual like
   console.log('\n6️⃣  Testing POST /swipe LIKE without mutual like...');
-  // profile_2 has NOT liked user_me
+  // profile_2 has NOT liked current_user
   const likeNoMatchRes = await makeRequest(app, 'POST', '/swipe', {
     targetProfileId: 'profile_2',
     action: 'LIKE'
   });
   assert.equal(likeNoMatchRes.status, 201);
-  assert.equal(likeNoMatchRes.body.isMatch, false, 'Should not match if target did not like user.');
-  console.log('   ✅ Non-mutual like recorded cleanly with isMatch: false.');
+  assert.equal(likeNoMatchRes.body.matched, false, 'Should not match if target did not like user.');
+  console.log('   ✅ Non-mutual like recorded cleanly with matched: false.');
 
-  // 7. POST /swipe LIKE WITH mutual like (profile_3 pre-liked user_me)
+  // 7. POST /swipe LIKE WITH mutual like (profile_3 pre-liked current_user)
   console.log('\n7️⃣  Testing POST /swipe with MUTUAL MATCH...');
   const mutualMatchRes = await makeRequest(app, 'POST', '/swipe', {
     targetProfileId: 'profile_3',
     action: 'LIKE'
   });
   assert.equal(mutualMatchRes.status, 201);
-  assert.equal(mutualMatchRes.body.isMatch, true, 'Should detect mutual match!');
-  assert.equal(mutualMatchRes.body.matchedProfile.id, 'profile_3');
-  assert.equal(mutualMatchRes.body.match.user1Id, 'user_me');
-  assert.equal(mutualMatchRes.body.match.user2Id, 'profile_3');
+  assert.equal(mutualMatchRes.body.matched, true, 'Should detect mutual match!');
+  assert.equal(mutualMatchRes.body.match.profile.id, 'profile_3');
+  assert.equal(mutualMatchRes.body.match.profile.name, 'Meera Nair');
   console.log('   ✅ Mutual match detected and returned in response!');
 
   // 8. GET /matches
@@ -198,21 +198,21 @@ async function runTests() {
   const matchesRes = await makeRequest(app, 'GET', '/matches');
   assert.equal(matchesRes.status, 200);
   assert.equal(matchesRes.body.count, 1, 'Should contain exactly 1 mutual match.');
-  assert.equal(matchesRes.body.matches[0].matchedUserId, 'profile_3');
+  assert.equal(matchesRes.body.matches[0].profile.id, 'profile_3');
   assert.equal(matchesRes.body.matches[0].profile.name, 'Meera Nair');
   console.log('   ✅ GET /matches returns only mutual matches with profile data.');
 
   // 9. Subsequent Startup: Ensure runtime state persists and is NOT reset
   console.log('\n9️⃣  Testing Subsequent Startup (Persistence Check)...');
-  const { app: app2, dal: dal2 } = await createApp({
+  const { app: app2 } = await createApp({
     seedFilePath: seedFile,
     runtimeFilePath: testRuntimeFile,
-    currentUserId: 'user_me'
+    currentUserId: 'current_user'
   });
 
   const matchesAfterRestart = await makeRequest(app2, 'GET', '/matches');
   assert.equal(matchesAfterRestart.body.count, 1, 'Matches must persist across server restarts.');
-  assert.equal(matchesAfterRestart.body.matches[0].matchedUserId, 'profile_3');
+  assert.equal(matchesAfterRestart.body.matches[0].profile.id, 'profile_3');
 
   const statsAfterRestart = await makeRequest(app2, 'GET', '/stats');
   assert.equal(statsAfterRestart.body.stats.userMatches, 1);
@@ -239,8 +239,17 @@ async function runTests() {
   assert.equal(statsAfterConcurrent.body.stats.userSwipes, 3 + concurrentTargets.length);
   console.log('   ✅ Concurrent write serialization verified with zero race conditions or data corruption.');
 
-  // 11. Immutability of Seed File
-  console.log('\n1️⃣1️⃣ Verifying Seed File Immutability...');
+  // 11. Development Reset Endpoint
+  console.log('\n1️⃣1️⃣ Testing Development Reset Endpoint...');
+  const resetRes = await makeRequest(app2, 'POST', '/dev/reset');
+  assert.equal(resetRes.status, 200);
+  assert.equal(resetRes.body.success, true);
+  const feedAfterReset = await makeRequest(app2, 'GET', '/feed');
+  assert.equal(feedAfterReset.body.count, 32, 'All 32 profiles should be unswiped after reset.');
+  console.log('   ✅ Dev reset endpoint successfully restored original seed state.');
+
+  // 12. Immutability of Seed File
+  console.log('\n1️⃣2️⃣ Verifying Seed File Immutability...');
   const finalSeedContent = await fs.readFile(seedFile, 'utf-8');
   assert.equal(finalSeedContent, initialSeedContent, 'seed/profiles.json must NEVER be modified!');
   console.log('   ✅ Seed file remains completely untouched and immutable.');
@@ -248,7 +257,7 @@ async function runTests() {
   // Cleanup test sandbox
   await fs.rm(testDataDir, { recursive: true, force: true });
 
-  console.log('\n🎉 ALL 11 TEST SUITES PASSED CLEANLY!\n');
+  console.log('\n🎉 ALL 12 BACKEND TEST SUITES PASSED CLEANLY!\n');
 }
 
 runTests().catch((err) => {

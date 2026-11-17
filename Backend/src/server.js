@@ -23,6 +23,7 @@ export async function createApp(customConfig = {}) {
     res.json({
       status: 'ok',
       service: 'coy-backend',
+      user: dal.currentUserId,
       timestamp: new Date().toISOString()
     });
   });
@@ -31,6 +32,19 @@ export async function createApp(customConfig = {}) {
     try {
       const stats = await dal.getStats();
       res.json({ success: true, stats });
+    } catch (err) {
+      next(err);
+    }
+  });
+
+  // Development-only reset endpoint
+  app.post(['/dev/reset', '/api/dev/reset'], async (req, res, next) => {
+    if (process.env.NODE_ENV === 'production') {
+      return res.status(403).json({ success: false, error: 'Reset endpoint disabled in production.' });
+    }
+    try {
+      await dal.resetToSeed();
+      res.json({ success: true, message: 'Runtime state successfully reset to initial seed data.' });
     } catch (err) {
       next(err);
     }

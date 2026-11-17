@@ -1,0 +1,290 @@
+[
+  {
+    "id": "profile_1",
+    "name": "Rhea Sen",
+    "age": 22,
+    "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    "bio": "Film photography, matcha lattes, and talking about movies we'll probably never watch.",
+    "cityOrCollege": "St. Stephen's College, Delhi",
+    "interests": ["Film Photography", "Matcha", "Cinema", "Thrifting"]
+  },
+  {
+    "id": "profile_2",
+    "name": "Kabir Malhotra",
+    "age": 24,
+    "photo": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
+    "bio": "Architect by day, vinyl hoarder by night. Can make a mean sourdough.",
+    "cityOrCollege": "IIT Roorkee / South Bombay",
+    "interests": ["Architecture", "Vinyl Records", "Sourdough", "Indie Rock"]
+  },
+  {
+    "id": "profile_3",
+    "name": "Meera Nair",
+    "age": 21,
+    "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+    "bio": "Looking for someone to attend standup comedy shows and rate local croissants with.",
+    "cityOrCollege": "St. Xavier's College, Mumbai",
+    "interests": ["Stand-up Comedy", "Bakery", "Jazz", "Psychology"]
+  },
+  {
+    "id": "profile_4",
+    "name": "Arjun Reddy",
+    "age": 23,
+    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    "bio": "Full-stack dev building side projects I abandon after two weeks. Let's debate tabs vs spaces.",
+    "cityOrCollege": "BITS Pilani, Goa",
+    "interests": ["Coding", "Sci-Fi", "Bouldering", "Espresso"]
+  },
+  {
+    "id": "profile_5",
+    "name": "Tara Deshmukh",
+    "age": 22,
+    "photo": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    "bio": "Always 10 minutes early or 20 minutes late. Tell me your top 3 Spotify songs right now.",
+    "cityOrCollege": "Ashoka University",
+    "interests": ["Spotify", "Modern Art", "Travel", "Board Games"]
+  },
+  {
+    "id": "profile_6",
+    "name": "Devansh Roy",
+    "age": 25,
+    "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+    "bio": "Product designer. Over-indexes on font pairings and pour-over coffee.",
+    "cityOrCollege": "NID Ahmedabad",
+    "interests": ["Typography", "Coffee Brewing", "UI/UX", "Cycling"]
+  },
+  {
+    "id": "profile_7",
+    "name": "Ananya Sharma",
+    "age": 21,
+    "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80",
+    "bio": "Economics major who can't budget her weekend brunches. Big on live concerts and golden retrievers.",
+    "cityOrCollege": "SRCC, Delhi University",
+    "interests": ["Concerts", "Brunch", "Dogs", "Podcasts"]
+  },
+  {
+    "id": "profile_8",
+    "name": "Siddharth Jain",
+    "age": 24,
+    "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+    "bio": "Marathon training and searching for the best rooftop sunset in town.",
+    "cityOrCollege": "IIT Delhi",
+    "interests": ["Running", "Sunsets", "Biographies", "Podcasting"]
+  },
+  {
+    "id": "profile_9",
+    "name": "Zoya Khan",
+    "age": 23,
+    "photo": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+    "bio": "Literature enthusiast with an unhealthy stationery addiction. Tea > coffee, no debate.",
+    "cityOrCollege": "Lady Shri Ram College, Delhi",
+    "interests": ["Poetry", "Stationery", "Chai", "Bookstores"]
+  },
+  {
+    "id": "profile_10",
+    "name": "Ishaan Kapoor",
+    "age": 24,
+    "photo": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80",
+    "bio": "Music producer and aspiring chef. Will make you playlist or pasta (or both).",
+    "cityOrCollege": "Christ University, Bangalore",
+    "interests": ["Music Production", "Italian Cuisine", "Synths", "Anime"]
+  },
+  {
+    "id": "profile_11",
+    "name": "Kavya Menon",
+    "age": 22,
+    "photo": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+    "bio": "Marine biology researcher. I know more whale facts than is socially acceptable.",
+    "cityOrCollege": "IISc Bangalore",
+    "interests": ["Scuba Diving", "Marine Life", "Documentaries", "Kayaking"]
+  },
+  {
+    "id": "profile_12",
+    "name": "Aditya Varma",
+    "age": 25,
+    "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
+    "bio": "Fintech founder in denial. Always up for late-night drives and deep conversations.",
+    "cityOrCollege": "IIT Bombay",
+    "interests": ["Startups", "Night Drives", "Chess", "Formula 1"]
+  },
+  {
+    "id": "profile_13",
+    "name": "Pooja Hegde",
+    "age": 21,
+    "photo": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80",
+    "bio": "Fashion communication student. Will candidly take photos of you without asking.",
+    "cityOrCollege": "NIFT Bangalore",
+    "interests": ["Fashion", "Vintage", "Pottery", "Aesthetic Cafes"]
+  },
+  {
+    "id": "profile_14",
+    "name": "Varun Chawla",
+    "age": 23,
+    "photo": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+    "bio": "Astrophotography nerd. I can point out Orion and tell bad science jokes.",
+    "cityOrCollege": "IIIT Hyderabad",
+    "interests": ["Stargazing", "Physics", "Sci-Fi Movies", "Trekking"]
+  },
+  {
+    "id": "profile_15",
+    "name": "Sanya Chopra",
+    "age": 22,
+    "photo": "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=800&q=80",
+    "bio": "Law student who can argue both sides of why pineapple belongs on pizza.",
+    "cityOrCollege": "NLSIU Bangalore",
+    "interests": ["Debate", "True Crime", "Pizza", "Tennis"]
+  },
+  {
+    "id": "profile_16",
+    "name": "Nikhil Bose",
+    "age": 24,
+    "photo": "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=800&q=80",
+    "bio": "Drummer in an indie band. If we match, you get guest-list access forever.",
+    "cityOrCollege": "Jadavpur University, Kolkata",
+    "interests": ["Drums", "Indie Music", "Vinyl", "Street Food"]
+  },
+  {
+    "id": "profile_17",
+    "name": "Dia Singhania",
+    "age": 21,
+    "photo": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    "bio": "Journalism student chasing stories and the best momo joints in North Campus.",
+    "cityOrCollege": "Miranda House, Delhi",
+    "interests": ["Journalism", "Street Food", "Documentaries", "Writing"]
+  },
+  {
+    "id": "profile_18",
+    "name": "Rohan Bhatt",
+    "age": 23,
+    "photo": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=800&q=80",
+    "bio": "Casual gamer, serious food enthusiast. Teach me how to cook and I'll wash the dishes.",
+    "cityOrCollege": "Manipal University",
+    "interests": ["Gaming", "Cooking", "Anime", "Pop Culture"]
+  },
+  {
+    "id": "profile_19",
+    "name": "Isha Saxena",
+    "age": 22,
+    "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+    "bio": "Yoga enthusiast who balances chakras and spreadsheet formulas at the same time.",
+    "cityOrCollege": "NMIMS Mumbai",
+    "interests": ["Yoga", "Mindfulness", "Matcha", "Plant Parenting"]
+  },
+  {
+    "id": "profile_20",
+    "name": "Karan Mehra",
+    "age": 25,
+    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    "bio": "Mechanical engineer who enjoys fixing antique watches and riding classic motorcycles.",
+    "cityOrCollege": "IIT Madras",
+    "interests": ["Motorcycles", "Horology", "Woodworking", "Rock Climbing"]
+  },
+  {
+    "id": "profile_21",
+    "name": "Shruti Iyer",
+    "age": 21,
+    "photo": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    "bio": "Classical dancer learning salsa. Looking for someone with rhythm (or willingness to learn).",
+    "cityOrCollege": "Stella Maris, Chennai",
+    "interests": ["Dance", "Salsa", "Filter Coffee", "Theatre"]
+  },
+  {
+    "id": "profile_22",
+    "name": "Yash Kulkarni",
+    "age": 24,
+    "photo": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=800&q=80",
+    "bio": "Environmental scientist. Trying to save the planet one reusable tote bag at a time.",
+    "cityOrCollege": "Symbiosis Pune",
+    "interests": ["Ecology", "Hiking", "Camping", "Folk Music"]
+  },
+  {
+    "id": "profile_23",
+    "name": "Natasha Paul",
+    "age": 23,
+    "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80",
+    "bio": "Graphic designer who judges restaurants solely by their menu font.",
+    "cityOrCollege": "Srishti Institute of Art, Bangalore",
+    "interests": ["Branding", "Illustration", "Museums", "Espresso"]
+  },
+  {
+    "id": "profile_24",
+    "name": "Aman Sethi",
+    "age": 24,
+    "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+    "bio": "Management consultant with 40 hotel room keys in my drawer. Help me stay grounded.",
+    "cityOrCollege": "IIM Ahmedabad",
+    "interests": ["Strategy", "Aviation", "Squash", "Podcasts"]
+  },
+  {
+    "id": "profile_25",
+    "name": "Kriti Ahuja",
+    "age": 22,
+    "photo": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+    "bio": "Film editor. I speak fluent sarcasm and know the exact timestamps for the best song transitions.",
+    "cityOrCollege": "FTII Pune",
+    "interests": ["Film Editing", "Cinema", "Dark Comedy", "Art Galleries"]
+  },
+  {
+    "id": "profile_26",
+    "name": "Sameer Joshi",
+    "age": 23,
+    "photo": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80",
+    "bio": "Financier who writes fantasy novels in airport lounges. 2 chapters away from publication.",
+    "cityOrCollege": "FMS Delhi",
+    "interests": ["Creative Writing", "World Building", "Fantasy", "Coffee"]
+  },
+  {
+    "id": "profile_27",
+    "name": "Sneha Roy",
+    "age": 21,
+    "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+    "bio": "Medical intern running on 4 hours of sleep and glucose biscuits. Looking for good vibes.",
+    "cityOrCollege": "AIIMS New Delhi",
+    "interests": ["Medicine", "Karaoke", "Baking", "Cute Dogs"]
+  },
+  {
+    "id": "profile_28",
+    "name": "Pranav Das",
+    "age": 24,
+    "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+    "bio": "DJ & sound engineer. Let's trade favorite underground tracks and see who has better taste.",
+    "cityOrCollege": "Goa University",
+    "interests": ["Electronic Music", "Sound Design", "Surfing", "Sunsets"]
+  },
+  {
+    "id": "profile_29",
+    "name": "Riya Bansal",
+    "age": 22,
+    "photo": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+    "bio": "Anthropology geek who loves flea markets, historical fiction, and cold brew.",
+    "cityOrCollege": "Delhi School of Economics",
+    "interests": ["Anthropology", "Flea Markets", "History", "Cold Brew"]
+  },
+  {
+    "id": "profile_30",
+    "name": "Dhruv Nambiar",
+    "age": 25,
+    "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    "bio": "Competitive swimmer turned software developer. Will challenge you to any board game.",
+    "cityOrCollege": "NIT Surathkal",
+    "interests": ["Swimming", "Board Games", "Open Source", "Tacos"]
+  },
+  {
+    "id": "profile_31",
+    "name": "Simran Gill",
+    "age": 22,
+    "photo": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80",
+    "bio": "Aspiring curator. Can spend 3 hours staring at a painting or talking about pasta.",
+    "cityOrCollege": "Kala Bhavana, Santiniketan",
+    "interests": ["Curating", "Paintings", "Italian Cooking", "Pottery"]
+  },
+  {
+    "id": "profile_32",
+    "name": "Tanmay Shukla",
+    "age": 23,
+    "photo": "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&w=800&q=80",
+    "bio": "Robotics engineer. Built a bot to water my plants so they don't judge me.",
+    "cityOrCollege": "IIT Kanpur",
+    "interests": ["Robotics", "Plants", "Board Games", "Astronomy"]
+  }
+]

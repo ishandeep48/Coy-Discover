@@ -4,9 +4,9 @@
 
 This repository contains a React.js recreation of the [Coy](https://app.getcoy.com/) anonymous crush detection app.
 
-## 🚧 Work In Progress
+## ✅ Demo Version - All Interactive Features Disabled
 
-This project is currently being developed and optimized. Some features may not be fully implemented or may change during development.
+> **Status: DEMO MODE** - This is a demonstration version of the Coy app with all interactive buttons disabled.
 
 ---
 
@@ -64,21 +64,19 @@ The development server will open automatically in your default browser.
 
 ---
 
-## 🎨 Features Implemented
+## 🎨 Features Implemented (Demo Mode)
 
 | Feature | Status | Description |
 |---------|--------|-------------|
-| **Header** | ✅ | Logo with settings button |
-| **Status Indicator** | ✅ | "No one has added you yet" message |
-| **Invite Friends** | ✅ | WhatsApp share link |
-| **Email Nudge** | ✅ | Add email functionality |
-| **Crushes List** | ✅ | Avatar-based crush list (1/3 slots) |
-| **Add Crush Tile** | ✅ | Interactive add button |
-| **Upgrade CTA** | ✅ | "More slots" call-to-action |
-| **Referral Section** | ✅ | Get a slot free promotion |
-| **Referral Code** | ✅ | Copy to clipboard functionality |
-| **Share Buttons** | ✅ | Copy link & share via WhatsApp |
-| **Toast Notifications** | ✅ | User feedback system |
+| **Header** | ✅ Active | Logo with settings button |
+| **Status Indicator** | ✅ Active | "No one has added you yet" message |
+| **Invite Friends** | ⏸️ Disabled | Button present but not clickable (demo) |
+| **Add Crush Tile** | ⏸️ Disabled | Button present but not clickable (demo) |
+| **More Slots** | ⏸️ Disabled | Link present but not clickable (demo) |
+| **Crushes List** | ✅ Active | Empty list with 1/3 counter shown |
+| **Toast Notifications** | ✅ Active | Shows demo messages when clicking buttons |
+
+> ℹ️ All buttons are disabled in this demo version. Clicking them shows informative toast messages.
 
 ---
 
@@ -112,13 +110,15 @@ The development server will open automatically in your default browser.
 
 ---
 
-## 📱 Features
+## 📱 Features (Demo Version)
 
-- **Anonymous Crush Detection**: Secretly add your crushes and find out if they like you back
-- **Mutual Discovery**: Both parties find out only when the feeling is mutual
-- **Invite System**: Get referrals to unlock free slots
-- **Email Lookup**: People can find you via email address
-- **Referral Program**: Copy code and share with friends
+- ✅ **Header Navigation** - Coy logo with settings button
+- ✅ **Status Indicator** - "No one has added you yet" message
+- ⏸️ **Invite Friends** - Disabled (demo mode)
+- ❌ **Email Nudge** - Removed from demo
+- ❌ **Add Crush Functionality** - Button disabled (no backend)
+- ❌ **More Slots Upgrade** - Removed from demo  
+- ❌ **Referral Section** - Removed from demo
 
 ---
 
@@ -168,12 +168,23 @@ npm run build
 
 This is a **1:1 recreation** of the offline saved Coy webpage from `Original/Coy.html`. The design, colors, and layout exactly match the original app.
 
-### Known Limitations (WIP)
+### Demo Version Features
 
-- Authentication system not implemented
-- Backend database integration pending
-- Real-time matching functionality to be added
-- User profile management coming soon
+This version is specifically configured as a **DEMO MODE** application:
+
+- ✅ All UI elements present and styled correctly
+- ❌ All interactive buttons are disabled
+- ✅ Toast notifications show informative messages
+- ⚠️ No backend database integration
+- ⚠️ No authentication system
+- ⚠️ No real-time matching functionality
+- ⚠️ Empty crushes list (no add functionality)
+
+### Removed Sections from Demo:
+
+1. **Email Nudge Section** - "Add your email" button removed
+2. **More Slots Link** - Upgrade CTA link removed
+3. **Referral Section** - "Get a slot free" section removed
 
 ---
 

@@ -90,7 +90,7 @@ export class DataAccessLayer {
     } catch (err) {
       throw new Error(`Invalid JSON in seed file at ${this.seedFilePath}: ${err.message}`);
     }
-
+    //30 profile check flag
     if (!Array.isArray(seedProfiles) || seedProfiles.length < 30) {
       throw new Error(`Seed profiles file must contain an array of at least 30 profiles. Found: ${seedProfiles?.length || 0}`);
     }

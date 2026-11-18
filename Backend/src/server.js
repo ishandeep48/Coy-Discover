@@ -80,21 +80,21 @@ export async function createApp(customConfig = {}) {
   if (fs.existsSync(assetDir)) {
     app.use('/asset', express.static(assetDir));
   }
-    app.get('*', (req, res, next) => {
-      if (
-        req.path.startsWith('/api') ||
-        req.path === '/feed' ||
-        req.path === '/swipe' ||
-        req.path === '/matches' ||
-        req.path === '/health' ||
-        req.path === '/stats' ||
-        req.path === '/dev/reset'
-      ) {
-        return next();
-      }
-      res.sendFile(path.join(distDir, 'index.html'));
-    });
-  
+  app.get('*', (req, res, next) => {
+    if (
+      req.path.startsWith('/api') ||
+      req.path === '/feed' ||
+      req.path === '/swipe' ||
+      req.path === '/matches' ||
+      req.path === '/health' ||
+      req.path === '/stats' ||
+      req.path === '/dev/reset'
+    ) {
+      return next();
+    }
+    res.sendFile(path.join(distDir, 'index.html'));
+  });
+
   // 404 Route Handler for unmatched API routes
   app.use((req, res) => {
     res.status(404).json({
@@ -126,10 +126,10 @@ if (process.argv[1] && process.argv[1].endsWith('server.js')) {
   createApp()
     .then(({ app, config }) => {
       app.listen(config.port, () => {
-        console.log(`🚀 Coy Discover Backend running on http://localhost:${config.port}`);
-        console.log(`👤 Assumed logged-in user: ${config.currentUserId}`);
-        console.log(`🌱 Seed file: ${config.seedFilePath}`);
-        console.log(`💾 Runtime state file: ${config.runtimeFilePath}`);
+        console.log(`Coy Discover Backend running on http://localhost:${config.port}`);
+        console.log(`Assumed logged-in user: ${config.currentUserId}`);
+        console.log(`Seed file: ${config.seedFilePath}`);
+        console.log(`Runtime state file: ${config.runtimeFilePath}`);
       });
     })
     .catch((err) => {

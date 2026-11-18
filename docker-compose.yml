@@ -14,5 +14,3 @@ services:
     volumes:
       # Persist the mutable runtime JSON across container lifecycles
       - ./Backend/data:/app/Backend/data
-      # Mount asset directory to serve local images
-      - ./Backend/asset:/app/asset

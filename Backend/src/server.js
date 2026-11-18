@@ -80,6 +80,7 @@ export async function createApp(customConfig = {}) {
         req.path === '/feed' ||
         req.path === '/swipe' ||
         req.path === '/matches' ||
+        req.path.startsWith('/asset') ||
         req.path === '/health' ||
         req.path === '/stats' ||
         req.path === '/dev/reset'
@@ -90,13 +91,21 @@ export async function createApp(customConfig = {}) {
     });
   }
 
-  // Serve asset folder for profile images (mounted at /app/asset)
-  const assetDir = path.resolve('/app/asset');
+  // Serve asset folder for profile images
+  const assetDir = path.resolve('/app/Backend/asset');
   if (fs.existsSync(assetDir)) {
-    app.use('/asset', express.static(assetDir));
+    app.get('/asset/*', (req, res) => {
+      try {
+        const filePath = path.join(assetDir, decodeURIComponent(req.path.slice(6)));
+        res.setHeader('Content-Type', 'image/avif');
+        res.sendFile(filePath);
+      } catch (err) {
+        next();
+      }
+    });
   }
 
-  // 404 Route Handler for unmatched API routes
+  // Serve production built frontend if available
   app.use((req, res) => {
     res.status(404).json({
       success: false,

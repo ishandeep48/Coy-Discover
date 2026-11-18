@@ -3,6 +3,23 @@ import ProfileCard from './ProfileCard';
 import MatchModal from './MatchModal';
 import { getFeed, postSwipe, devResetData } from '../api';
 
+// Mobile breakpoint threshold in pixels
+const MOBILE_BREAKPOINT = 768;
+
+// Detect mobile device based on screen width
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  return isMobile;
+}
+
 /**
  * Discover Component
  * 
@@ -16,6 +33,8 @@ function Discover({ onOpenMatches, showToast }) {
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeMatch, setActiveMatch] = useState(null);
+  
+  const isMobile = useIsMobile();
 
   // Fetch feed on mount
   const loadFeed = useCallback(async () => {
@@ -293,72 +312,99 @@ function Discover({ onOpenMatches, showToast }) {
         )}
       </div>
 
-      {/* Desktop & Touch Action Controls (PASS & LIKE Buttons) */}
+      {/* Mobile & Desktop Action Controls */}
       {!loading && !error && currentProfile && (
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '28px',
-            width: '100%',
-            paddingTop: '16px'
-          }}
-        >
-          {/* PASS BUTTON (Left) */}
-          <button
-            type="button"
-            onClick={() => handleSwipe('PASS')}
-            disabled={isSubmitting}
-            aria-label="Pass Profile"
-            style={{
-              width: '64px',
-              height: '64px',
-              borderRadius: '50%',
-              background: '#ffffff',
-              border: '2.5px solid #15121d',
-              boxShadow: '3px 3px 0 #15121d',
-              display: 'grid',
-              placeItems: 'center',
-              cursor: isSubmitting ? 'not-allowed' : 'pointer',
-              color: '#6d6979',
-              fontSize: '1.5rem',
-              fontWeight: 800,
-              opacity: isSubmitting ? 0.6 : 1,
-              transition: 'transform 0.1s ease, background 0.15s ease'
-            }}
-            onMouseDown={(e) => (e.currentTarget.style.transform = 'scale(0.92)')}
-            onMouseUp={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-          >
-            ✕
-          </button>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '28px', width: '100%', paddingTop: '16px' }}>
+          {/* Mobile Swipe Instructions (Only on mobile) */}
+          {isMobile && (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                gap: '24px',
+                alignItems: 'center',
+                width: '100%',
+                paddingBottom: '8px',
+                color: '#6d6979',
+                fontSize: '0.85rem',
+                fontWeight: 600,
+                fontFamily: '"Bricolage Grotesque", system-ui, sans-serif',
+                flexWrap: 'wrap'
+              }}
+            >
+              {/* Swipe Left Instruction */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '1.25rem', fontWeight: 700 }}>←</span>
+                <span>Swipe left to pass</span>
+              </div>
 
-          {/* LIKE BUTTON (Right) */}
-          <button
-            type="button"
-            onClick={() => handleSwipe('LIKE')}
-            disabled={isSubmitting}
-            aria-label="Like Profile"
-            style={{
-              width: '72px',
-              height: '72px',
-              borderRadius: '50%',
-              background: '#ff3d81',
-              border: '2.5px solid #15121d',
-              boxShadow: '4px 4px 0 #15121d',
-              display: 'grid',
-              placeItems: 'center',
-              cursor: isSubmitting ? 'not-allowed' : 'pointer',
-              color: '#ffffff',
-              fontSize: '2rem',
-              opacity: isSubmitting ? 0.6 : 1,
-              transition: 'transform 0.1s ease'
-            }}
-            onMouseDown={(e) => (e.currentTarget.style.transform = 'scale(0.92)')}
-            onMouseUp={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-          >
-            💖
-          </button>
+              {/* Swipe Right Instruction */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span style={{ fontSize: '1.25rem', fontWeight: 700 }}>→</span>
+                <span>Swipe right to like</span>
+              </div>
+            </div>
+          )}
+
+          {/* PASS BUTTON (Left) - Desktop only */}
+          {!isMobile && (
+            <button
+              type="button"
+              onClick={() => handleSwipe('PASS')}
+              disabled={isSubmitting}
+              aria-label="Pass Profile"
+              style={{
+                width: '64px',
+                height: '64px',
+                borderRadius: '50%',
+                background: '#ffffff',
+                border: '2.5px solid #15121d',
+                boxShadow: '3px 3px 0 #15121d',
+                display: 'grid',
+                placeItems: 'center',
+                cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                color: '#6d6979',
+                fontSize: '1.5rem',
+                fontWeight: 800,
+                opacity: isSubmitting ? 0.6 : 1,
+                transition: 'transform 0.1s ease, background 0.15s ease'
+              }}
+              onMouseDown={(e) => (e.currentTarget.style.transform = 'scale(0.92)')}
+              onMouseUp={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+            >
+              ✕
+            </button>
+          )}
+
+          {/* LIKE BUTTON (Right) - Desktop only */}
+          {!isMobile && (
+            <button
+              type="button"
+              onClick={() => handleSwipe('LIKE')}
+              disabled={isSubmitting}
+              aria-label="Like Profile"
+              style={{
+                width: '72px',
+                height: '72px',
+                borderRadius: '50%',
+                background: '#ff3d81',
+                border: '2.5px solid #15121d',
+                boxShadow: '4px 4px 0 #15121d',
+                display: 'grid',
+                placeItems: 'center',
+                cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                color: '#ffffff',
+                fontSize: '2rem',
+                opacity: isSubmitting ? 0.6 : 1,
+                transition: 'transform 0.1s ease'
+              }}
+              onMouseDown={(e) => (e.currentTarget.style.transform = 'scale(0.92)')}
+              onMouseUp={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+            >
+              💖
+            </button>
+          )}
         </div>
       )}
 

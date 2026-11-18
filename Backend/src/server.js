@@ -73,6 +73,13 @@ export async function createApp(customConfig = {}) {
 
   if (distDir) {
     app.use(express.static(distDir));
+  }
+
+  // Serve asset folder for profile images (mounted at /app/asset)
+  const assetDir = path.resolve('/app/asset');
+  if (fs.existsSync(assetDir)) {
+    app.use('/asset', express.static(assetDir));
+  }
     app.get('*', (req, res, next) => {
       if (
         req.path.startsWith('/api') ||
@@ -87,8 +94,7 @@ export async function createApp(customConfig = {}) {
       }
       res.sendFile(path.join(distDir, 'index.html'));
     });
-  }
-
+  
   // 404 Route Handler for unmatched API routes
   app.use((req, res) => {
     res.status(404).json({

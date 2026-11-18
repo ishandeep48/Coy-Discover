@@ -8,6 +8,15 @@ A complete, production-grade Discover and anonymous crush matching experience fo
 
 Whether you have Docker installed or want to run natively with Node.js, follow the detailed instructions below.
 
+### Demo Video
+
+Please Refer to this Video for Demo and setup guide
+
+
+https://github.com/user-attachments/assets/028b69cd-2197-4073-ad98-0b4f9e6e3337
+
+
+
 ---
 
 ### Method 1: Using Docker (Recommended — Single Command)

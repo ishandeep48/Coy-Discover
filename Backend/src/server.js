@@ -2,125 +2,139 @@ import express from 'express';
 import cors from 'cors';
 import fs from 'node:fs';
 import path from 'node:path';
-import { config } from './config.js';
+import { fileURLToPath } from 'node:url';
+import { config as defaultConfig } from './config.js';
 import { DataAccessLayer } from './dal/dataAccess.js';
 import { createFeedRouter } from './routes/feed.js';
 import { createSwipeRouter } from './routes/swipe.js';
 import { createMatchesRouter } from './routes/matches.js';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__dirname);
+const __dirname = path.dirname(__filename);
 
-// Initialize Express app with configuration directly
-const app = express();
+export async function createApp(customConfig = {}) {
+  const appConfig = { ...defaultConfig, ...customConfig };
+  const app = express();
 
-// Core Middlewares
-app.use(cors());
-app.use(express.json());
+  // Core Middlewares
+  app.use(cors());
+  app.use(express.json());
 
-// Initialize Data Access Layer
-const dal = new DataAccessLayer(config);
-await dal.initialize();
+  // Initialize Data Access Layer
+  const dal = new DataAccessLayer(appConfig);
+  await dal.initialize();
 
-// Health check & diagnostic routes
-app.get(['/health', '/api/health'], (req, res) => {
-  res.json({
-    status: 'ok',
-    service: 'coy-backend',
-    user: dal.currentUserId,
-    timestamp: new Date().toISOString()
+  // Health check & diagnostic routes
+  app.get(['/health', '/api/health'], (req, res) => {
+    res.json({
+      status: 'ok',
+      service: 'coy-backend',
+      user: dal.currentUserId,
+      timestamp: new Date().toISOString()
+    });
   });
-});
 
-app.get(['/stats', '/api/stats'], async (req, res, next) => {
-  try {
-    const stats = await dal.getStats();
-    res.json({ success: true, stats });
-  } catch (err) {
-    next(err);
-  }
-});
-
-// Reset demo state endpoint (restores initial seed profiles)
-app.post(['/dev/reset', '/api/dev/reset'], async (req, res, next) => {
-  try {
-    console.log('[DAL] Dev reset invoked - restoring runtime.json to seed state');
-    await dal.resetToSeed();
-    res.json({ success: true, message: 'Runtime state successfully reset to initial seed data.' });
-  } catch (err) {
-    next(err);
-  }
-});
-
-// Feature Routes: support both root and /api prefixed routes
-const feedRouter = createFeedRouter(dal);
-const swipeRouter = createSwipeRouter(dal);
-const matchesRouter = createMatchesRouter(dal);
-
-app.use(['/feed', '/api/feed'], feedRouter);
-app.use(['/swipe', '/api/swipe'], swipeRouter);
-app.use(['/matches', '/api/matches'], matchesRouter);
-
-// Serve production built frontend if available
-const distCandidates = [
-  path.resolve(__dirname, '../../Frontend/dist'),
-  path.resolve(process.cwd(), 'Frontend/dist'),
-  path.resolve(__dirname, '../public')
-];
-const distDir = distCandidates.find((dir) => fs.existsSync(dir));
-
-if (distDir) {
-  app.use(express.static(distDir));
-  
-  app.get('*', (req, res, next) => {
-    if (
-      req.path.startsWith('/api') ||
-      req.path === '/feed' ||
-      req.path === '/swipe' ||
-      req.path === '/matches' ||
-      req.path === '/health' ||
-      req.path === '/stats' ||
-      req.path === '/dev/reset'
-    ) {
-      return next();
+  app.get(['/stats', '/api/stats'], async (req, res, next) => {
+    try {
+      const stats = await dal.getStats();
+      res.json({ success: true, stats });
+    } catch (err) {
+      next(err);
     }
-    res.sendFile(path.join(distDir, 'index.html'));
   });
-}
 
-// Serve asset folder for profile images (mounted at /app/asset)
-const assetDir = path.resolve('/app/asset');
-if (fs.existsSync(assetDir)) {
-  app.use('/asset', express.static(assetDir));
-}
-
-// 404 Route Handler for unmatched API routes
-app.use((req, res) => {
-  res.status(404).json({
-    success: false,
-    error: `Route ${req.method} ${req.originalUrl} not found.`
+  // Reset demo state endpoint (restores initial seed profiles)
+  app.post(['/dev/reset', '/api/dev/reset'], async (req, res, next) => {
+    try {
+      console.log('[DAL] Dev reset invoked - restoring runtime.json to seed state');
+      await dal.resetToSeed();
+      res.json({ success: true, message: 'Runtime state successfully reset to initial seed data.' });
+    } catch (err) {
+      next(err);
+    }
   });
-});
 
-// Centralized Error Handler
-app.use((err, req, res, next) => {
-  const status = err.status || 500;
-  const message = err.message || 'Internal Server Error';
+  // Feature Routes: support both root and /api prefixed routes
+  const feedRouter = createFeedRouter(dal);
+  const swipeRouter = createSwipeRouter(dal);
+  const matchesRouter = createMatchesRouter(dal);
 
-  if (status >= 500) {
-    console.error(`[Error] 500:`, err);
+  app.use(['/feed', '/api/feed'], feedRouter);
+  app.use(['/swipe', '/api/swipe'], swipeRouter);
+  app.use(['/matches', '/api/matches'], matchesRouter);
+
+  // Serve production built frontend if available
+  const distCandidates = [
+    path.resolve(__dirname, '../../Frontend/dist'),
+    path.resolve(process.cwd(), 'Frontend/dist'),
+    path.resolve(__dirname, '../public')
+  ];
+  const distDir = distCandidates.find((dir) => fs.existsSync(dir));
+
+  if (distDir) {
+    app.use(express.static(distDir));
+    
+    app.get('*', (req, res, next) => {
+      if (
+        req.path.startsWith('/api') ||
+        req.path === '/feed' ||
+        req.path === '/swipe' ||
+        req.path === '/matches' ||
+        req.path === '/health' ||
+        req.path === '/stats' ||
+        req.path === '/dev/reset'
+      ) {
+        return next();
+      }
+      res.sendFile(path.join(distDir, 'index.html'));
+    });
   }
 
-  res.status(status).json({
-    success: false,
-    error: message
-  });
-});
+  // Serve asset folder for profile images (mounted at /app/asset)
+  const assetDir = path.resolve('/app/asset');
+  if (fs.existsSync(assetDir)) {
+    app.use('/asset', express.static(assetDir));
+  }
 
-// Start server directly with app.listen()
-app.listen(config.port, () => {
-  console.log(`Coy Discover Backend running on http://localhost:${config.port}`);
-  console.log(`Assumed logged-in user: ${config.currentUserId}`);
-  console.log(`Seed file: ${config.seedFilePath}`);
-  console.log(`Runtime state file: ${config.runtimeFilePath}`);
-});
+  // 404 Route Handler for unmatched API routes
+  app.use((req, res) => {
+    res.status(404).json({
+      success: false,
+      error: `Route ${req.method} ${req.originalUrl} not found.`
+    });
+  });
+
+  // Centralized Error Handler
+  app.use((err, req, res, next) => {
+    const status = err.status || 500;
+    const message = err.message || 'Internal Server Error';
+
+    if (status >= 500) {
+      console.error(`[Error] 500:`, err);
+    }
+
+    res.status(status).json({
+      success: false,
+      error: message
+    });
+  });
+
+  return { app, dal, config: appConfig };
+}
+
+// Auto-start server when run directly
+if (process.argv[1] && process.argv[1].endsWith('server.js')) {
+  createApp()
+    .then(({ app, config }) => {
+      app.listen(config.port, () => {
+        console.log(`Coy Discover Backend running on http://localhost:${config.port}`);
+        console.log(`Assumed logged-in user: ${config.currentUserId}`);
+        console.log(`Seed file: ${config.seedFilePath}`);
+        console.log(`Runtime state file: ${config.runtimeFilePath}`);
+      });
+    })
+    .catch((err) => {
+      console.error('Fatal initialization error:', err);
+      process.exit(1);
+    });
+}

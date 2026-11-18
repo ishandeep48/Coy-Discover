@@ -36,7 +36,6 @@ COPY --from=backend-builder /app/Backend/node_modules ./Backend/node_modules
 COPY Backend/package.json ./Backend/package.json
 COPY Backend/src/ ./Backend/src/
 COPY Backend/seed/ ./Backend/seed/
-COPY seed/ ./seed/
 
 # Create runtime data directory
 RUN mkdir -p /app/Backend/data

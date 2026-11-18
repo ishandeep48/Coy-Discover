@@ -172,7 +172,8 @@ function ProfileCard({ profile, onSwipe, disabled }) {
                   fontWeight: 800,
                   letterSpacing: '-0.02em',
                   fontFamily: '"Bricolage Grotesque", system-ui, sans-serif',
-                  lineHeight: 1.1
+                  lineHeight: 1.1,
+                  color: '#ffffff'
                 }}
               >
                 {profile.name}

@@ -32,7 +32,7 @@
       "id": "profile_3",
       "name": "Meera Nair",
       "age": 21,
-      "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1494806504674-1d945cfe84b5?auto=format&fit=crop&w=800&q=80",
       "bio": "Looking for someone to attend standup comedy shows and rate local croissants with.",
       "cityOrCollege": "St. Xavier's College, Mumbai",
       "interests": [
@@ -46,7 +46,7 @@
       "id": "profile_4",
       "name": "Arjun Reddy",
       "age": 23,
-      "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
       "bio": "Full-stack dev building side projects I abandon after two weeks. Let's debate tabs vs spaces.",
       "cityOrCollege": "BITS Pilani, Goa",
       "interests": [
@@ -60,7 +60,7 @@
       "id": "profile_5",
       "name": "Tara Deshmukh",
       "age": 22,
-      "photo": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=800&q=80",
       "bio": "Always 10 minutes early or 20 minutes late. Tell me your top 3 Spotify songs right now.",
       "cityOrCollege": "Ashoka University",
       "interests": [
@@ -74,7 +74,7 @@
       "id": "profile_6",
       "name": "Devansh Roy",
       "age": 25,
-      "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1480455624313-e29b74b2e54b?auto=format&fit=crop&w=800&q=80",
       "bio": "Product designer. Over-indexes on font pairings and pour-over coffee.",
       "cityOrCollege": "NID Ahmedabad",
       "interests": [
@@ -88,7 +88,7 @@
       "id": "profile_7",
       "name": "Ananya Sharma",
       "age": 21,
-      "photo": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
       "bio": "Economics major who can't budget her weekend brunches. Big on live concerts and golden retrievers.",
       "cityOrCollege": "SRCC, Delhi University",
       "interests": [
@@ -102,7 +102,7 @@
       "id": "profile_8",
       "name": "Siddharth Jain",
       "age": 24,
-      "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
       "bio": "Marathon training and searching for the best rooftop sunset in town.",
       "cityOrCollege": "IIT Delhi",
       "interests": [
@@ -116,7 +116,7 @@
       "id": "profile_9",
       "name": "Zoya Khan",
       "age": 23,
-      "photo": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
       "bio": "Literature enthusiast with an unhealthy stationery addiction. Tea > coffee, no debate.",
       "cityOrCollege": "Lady Shri Ram College, Delhi",
       "interests": [
@@ -130,7 +130,7 @@
       "id": "profile_10",
       "name": "Ishaan Kapoor",
       "age": 24,
-      "photo": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=80",
       "bio": "Music producer and aspiring chef. Will make you playlist or pasta (or both).",
       "cityOrCollege": "Christ University, Bangalore",
       "interests": [
@@ -144,7 +144,7 @@
       "id": "profile_11",
       "name": "Kavya Menon",
       "age": 22,
-      "photo": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
       "bio": "Marine biology researcher. I know more whale facts than is socially acceptable.",
       "cityOrCollege": "IISc Bangalore",
       "interests": [
@@ -158,7 +158,7 @@
       "id": "profile_12",
       "name": "Aditya Varma",
       "age": 25,
-      "photo": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
       "bio": "Fintech founder in denial. Always up for late-night drives and deep conversations.",
       "cityOrCollege": "IIT Bombay",
       "interests": [
@@ -186,7 +186,7 @@
       "id": "profile_14",
       "name": "Varun Chawla",
       "age": 23,
-      "photo": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80",
       "bio": "Astrophotography nerd. I can point out Orion and tell bad science jokes.",
       "cityOrCollege": "IIIT Hyderabad",
       "interests": [
@@ -228,7 +228,7 @@
       "id": "profile_17",
       "name": "Dia Singhania",
       "age": 21,
-      "photo": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1502408986993-rKdE6f5c3b2e?auto=format&fit=crop&w=800&q=80",
       "bio": "Journalism student chasing stories and the best momo joints in North Campus.",
       "cityOrCollege": "Miranda House, Delhi",
       "interests": [
@@ -256,7 +256,7 @@
       "id": "profile_19",
       "name": "Isha Saxena",
       "age": 22,
-      "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1548460836-74e6b94c87b4?auto=format&fit=crop&w=800&q=80",
       "bio": "Yoga enthusiast who balances chakras and spreadsheet formulas at the same time.",
       "cityOrCollege": "NMIMS Mumbai",
       "interests": [
@@ -368,7 +368,7 @@
       "id": "profile_27",
       "name": "Sneha Roy",
       "age": 21,
-      "photo": "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80",
+      "photo": "https://images.unsplash.com/photo-1548460836-74e6b94c87b4?auto=format&fit=crop&w=800&q=80",
       "bio": "Medical intern running on 4 hours of sleep and glucose biscuits. Looking for good vibes.",
       "cityOrCollege": "AIIMS New Delhi",
       "interests": [
@@ -452,41 +452,22 @@
   "swipes": [
     {
       "swiperId": "profile_3",
-      "targetProfileId": "user_me",
+      "targetProfileId": "current_user",
       "action": "LIKE",
-      "createdAt": "2026-11-17T13:44:51.034Z"
+      "createdAt": "2026-11-18T07:10:08.583Z"
     },
     {
       "swiperId": "profile_7",
-      "targetProfileId": "user_me",
+      "targetProfileId": "current_user",
       "action": "LIKE",
-      "createdAt": "2026-11-17T15:44:51.034Z"
+      "createdAt": "2026-11-18T09:10:08.583Z"
     },
     {
       "swiperId": "profile_12",
-      "targetProfileId": "user_me",
+      "targetProfileId": "current_user",
       "action": "LIKE",
-      "createdAt": "2026-11-17T17:44:51.034Z"
-    },
-    {
-      "swiperId": "user_me",
-      "targetProfileId": "profile_3",
-      "action": "LIKE",
-      "createdAt": "2026-11-17T18:45:26.175Z"
-    },
-    {
-      "swiperId": "user_me",
-      "targetProfileId": "profile_1",
-      "action": "PASS",
-      "createdAt": "2026-11-17T18:46:02.382Z"
+      "createdAt": "2026-11-18T11:10:08.583Z"
     }
   ],
-  "matches": [
-    {
-      "id": "008430b9-0f19-4034-830e-7bba6ca57689",
-      "user1Id": "user_me",
-      "user2Id": "profile_3",
-      "createdAt": "2026-11-17T18:45:26.175Z"
-    }
-  ]
+  "matches": []
 }
